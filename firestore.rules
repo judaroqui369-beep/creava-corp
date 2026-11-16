@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Health / connection test
+    match /test/connection {
+      allow read: if true;
+    }
+
+    // Each user has their own private designs collection under /users/{userId}/designs/{designId}
+    match /users/{userId}/designs/{designId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // User profile document
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Public templates or shared designs (if any)
+    match /public_templates/{templateId} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+}

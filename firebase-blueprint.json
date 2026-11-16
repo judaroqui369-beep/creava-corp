@@ -1,0 +1,84 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "User ID",
+          "maxLength": 128
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of user",
+          "maxLength": 100
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of user",
+          "maxLength": 150
+        },
+        "plan": {
+          "type": "string",
+          "enum": ["Gratuito", "Pro"]
+        },
+        "updatedAt": {
+          "type": "number",
+          "description": "Unix timestamp of last profile update"
+        }
+      },
+      "required": ["id", "name", "email"]
+    },
+    "UserDesign": {
+      "title": "UserDesign",
+      "description": "Saved design document belonging to a user",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique design identifier",
+          "maxLength": 128
+        },
+        "title": {
+          "type": "string",
+          "description": "Document title",
+          "maxLength": 200
+        },
+        "width": {
+          "type": "number",
+          "description": "Artboard width in pixels"
+        },
+        "height": {
+          "type": "number",
+          "description": "Artboard height in pixels"
+        },
+        "pageCount": {
+          "type": "number",
+          "description": "Number of pages in the design"
+        },
+        "previewBg": {
+          "type": "string",
+          "description": "Background color or gradient for visual preview",
+          "maxLength": 100
+        },
+        "updatedAt": {
+          "type": "number",
+          "description": "Timestamp of last modification"
+        }
+      },
+      "required": ["id", "title", "width", "height", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Private profile document for each user"
+    },
+    "/users/{userId}/designs/{designId}": {
+      "schema": "UserDesign",
+      "description": "User-authored design documents"
+    }
+  }
+}

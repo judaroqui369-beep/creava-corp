@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer utilities {
+  .font-montserrat { font-family: 'Montserrat', sans-serif; }
+  .font-poppins { font-family: 'Poppins', sans-serif; }
+  .font-playfair { font-family: 'Playfair Display', serif; }
+  .font-bebas { font-family: 'Bebas Neue', sans-serif; }
+  .font-greatvibes { font-family: 'Great Vibes', cursive; }
+  .font-caveat { font-family: 'Caveat', cursive; }
+  .font-oswald { font-family: 'Oswald', sans-serif; }
+  .font-inter { font-family: 'Inter', sans-serif; }
+  .font-pacifico { font-family: 'Pacifico', cursive; }
+  .font-space { font-family: 'Space Grotesk', sans-serif; }
+  .font-cinzel { font-family: 'Cinzel', serif; }
+}
+
+/* Custom slim scrollbar matching Canva */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(120, 120, 120, 0.25) transparent;
+  overscroll-behavior: contain;
+}
+.dark .custom-scrollbar {
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+/* Checkered canvas background for transparency */
+.bg-transparency-grid {
+  background-color: #ffffff;
+  background-image: linear-gradient(45deg, #f0f0f0 25%, transparent 25%), 
+                    linear-gradient(-45deg, #f0f0f0 25%, transparent 25%), 
+                    linear-gradient(45deg, transparent 75%, #f0f0f0 75%), 
+                    linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+}
